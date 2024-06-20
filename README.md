@@ -1,9 +1,9 @@
 # mon-gfx
 
-This project will build two tools (monsprite & monicon) for compiling Pokémon sprites for use with GBA [decompilation projects](https://github.com/pret).
+This project will build two tools (```monsprite``` & ```monicon```) for compiling Pokémon sprites for use with GBA [decompilation projects](https://github.com/pret).
 The purpose of this project is to automatically arrange sprite palettes, redraw the sprites using the properly formatted palettes, then compress and export the data as binary files to be included in a project.
 
-> Note: The outputted data is not compatable with standard decompilation projects (like pokeeemerald) by default. These tools were written for the development of Pokémon Saffron Version, which handles battler sprite and icon sprite data in a different fashion. For example, battler sprite palette binaries are uncompressed data, unlike in pokeemerald where the palette data is Lz77 compressed. Another example being that icon sprites use unique palettes, unlike in pokeeemrald where icons use a standardized set of palettes.
+> Note: The outputted data is not compatable with standard decompilation projects (like pokeeemerald) by default. These tools were written for the development of Pokémon Saffron Version, which handles battler sprite and icon sprite data in a different fashion. For example, battler sprite palette binaries are uncompressed data, unlike in pokeemerald where the palette data is Lz77 compressed. Another example being that icon sprites use unique palettes, unlike in pokeemerald where icons use a standardized set of palettes.
 
 ## monsprite
 
@@ -24,6 +24,7 @@ For example, executing ```monsprite bulbasaur_sprite.png bulbasaur``` will outpu
 ![Alt text](bulbasaur_icon.png)
 
 This tool takes indexed 32x32 icon gfx (example above) as an input and outputs binary files with the tile+palette data.
+> Note: The indexed palettes do **not** need to retain a specific order (e.g. the transparent color being in the first position).
 
 For example, executing ```monicon bulbasaur_icon.png bulbasaur``` will output the following files.
 - /bulbasaur.icon.4bpp
@@ -32,7 +33,7 @@ For example, executing ```monicon bulbasaur_icon.png bulbasaur``` will output th
 ## Including the outputted data
 
 The binary files can then be included in an assembly file anywhere in the project.
-```
+```as
 front_tiles_bulbasaur:: .incbin "bulbasaur.front.4bpp"
 back_tiles_bulbasaur:: .incbin "bulbasaur.back.4bpp"
 front_pal_bulbasaur:: .incbin "bulbasaur.front.pal"
@@ -42,7 +43,7 @@ icon_pal_bulbasaur:: .incbin "bulbasaur.icon.pal"
 ```
 
 All necessary declarations are in the outputted header file to be included in your gfx data structure, as well as sprite coord data.
-```
+```c
 #include "bulbasaur.h"
 
 const struct SpeciesGfx gSpeciesGfxTable[] =
