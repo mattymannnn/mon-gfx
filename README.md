@@ -58,7 +58,7 @@ const struct SpeciesGfx gSpeciesGfxTable[] =
         .iconPal = {icon_pal_bulbasaur, SPECIES_BULBASAUR + GFX_TAG_SPECIES_ICON},
         .frontCoords = { .size = MON_COORDS_SIZE(bulbasaur_f_w, bulbasaur_f_h), .y_offset =  0 },
         .backCoords = { .size = MON_COORDS_SIZE(bulbasaur_b_w, bulbasaur_b_h), .y_offset =  0 },
-        .elevation = 0,
+        .elevation = 0
     },
     ...
 };
