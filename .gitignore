@@ -1,0 +1,6 @@
+.DS_Store
+*.o
+monsprite
+monsprite.exe
+monicon
+monicon.exe
